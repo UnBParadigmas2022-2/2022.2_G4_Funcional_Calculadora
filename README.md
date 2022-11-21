@@ -26,11 +26,33 @@ Adicione 2 ou mais screenshots do projeto em termos de interface e/ou funcioname
 
 ## Instalação 
 **Linguagens**: Haskell<br>
-**Tecnologias**: Haskell Tool Stack<br>
+**Tecnologias**: Haskell Tool Stack e Cabal em ambiente containerizado por Docker<br>
 
-Descreva os pré-requisitos para rodar o seu projeto e os comandos necessários.
-Insira um manual ou um script para auxiliar ainda mais.
-Gifs animados e outras ilustrações são bem-vindos!
+Este projeto conta como dependências as ferramentas [Stack](https://docs.haskellstack.org/en/stable/) e [Cabal](https://cabal.readthedocs.io/en/stable/) providas pela própia linguagem em conjunto com o [GHCup](https://www.haskell.org/ghcup/).
+
+Entretanto, existe uma certa incerteza entre plataformas, visto que o suporte à estas ferramentas não são uniformes entre diferentes sistemas operacionais. Para tal, foi desenvolvido então uma imagem para executar o projeto.
+
+Para executar o projeto, é preciso ter o [Docker](https://docs.docker.com/) instalado localmente, caso você não ainda não tenha, baste seguir a [documentação de instalação da ferramenta](https://docs.docker.com/).
+
+Com o docker instalado, basta executar o seguinte comando em um terminal, localizado na mesma pasta que o arquivo `Dockerfile`:
+
+```
+docker build -t g4_funcional_calculadora .
+```
+
+Uma vez executado o comando de `build`, é necessário então instanciar um container a partir da imagem. É possível realizar isso com o comando:
+
+```
+docker run --name calculadora g4_funcional_calculadora
+```
+
+Para executar o container parado, então, basta executar o seguinte comando:
+
+```
+docker start -a calculadora
+```
+
+> Gifs animados e outras ilustrações são bem-vindos!
 
 ## Uso 
 Explique como usar seu projeto.
