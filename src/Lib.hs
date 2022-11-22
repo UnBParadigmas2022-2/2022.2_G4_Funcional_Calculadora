@@ -16,16 +16,18 @@ getNumber (char, str)
     where h = head str
           t = tail str
 
-operacao :: (Int, Char, [Char]) -> Int
-operacao (_, _, []) = 0
-operacao (num, h, t) 
+operacao :: (Int, [Char]) -> Int
+operacao (_, []) = 0
+operacao (num, str) 
     | h == '+'  = num + calcula t
     | h == '-'  = num - calcula t
-    | otherwise = operacao(num, head t, tail t)
+    | otherwise = operacao(num, t)
+    where h = head str
+          t = tail str
 
 calcula :: [Char] -> Int
 calcula c = resultado(head c, tail c)
 
 resultado :: (Char, [Char]) -> Int
 resultado (h, []) = strToNumber(toList(h))
-resultado (h, t) = operacao(strToNumber(getNumber(h, t)), head t, tail t)
+resultado (h, t) = operacao(strToNumber(getNumber(h, t)), t)
