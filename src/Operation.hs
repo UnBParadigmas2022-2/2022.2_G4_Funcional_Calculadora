@@ -16,14 +16,14 @@ multiplication (num, str)
 operation :: (Int, [Char]) -> Int
 operation (num, []) = num
 operation (num, str) 
-    | h == '+'  = calculate(t) + num
-    | h == '-'  = calculate(t) - num
+    | h == '+'  = result(t) + num
+    | h == '-'  = result(t) - num
     | otherwise = operation(num, t)
     where h = head str
           t = tail str
 
 calculate :: [Char] -> Int
-calculate str = result(str)
+calculate str = result(reverse str)
 
 result :: ([Char]) -> Int
 result ([]) = 0
