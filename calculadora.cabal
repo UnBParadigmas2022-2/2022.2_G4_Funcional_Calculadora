@@ -6,12 +6,12 @@ cabal-version: 1.12
 
 name:           calculadora
 version:        0.1.0.0
-description:    Please see the README on GitHub at <https://github.com/githubuser/calculadora#readme>
-homepage:       https://github.com/githubuser/calculadora#readme
-bug-reports:    https://github.com/githubuser/calculadora/issues
-author:         Author name here
+description:    Please see the README on GitHub at <https://github.com/UnBParadigmas2022-2/2022.2_G4_Funcional_Calculadora#readme>
+homepage:       https://github.com/UnBParadigmas2022-2/2022.2_G4_Funcional_Calculadora#readme
+bug-reports:    https://github.com/UnBParadigmas2022-2/2022.2_G4_Funcional_Calculadora/issues
+author:         2022-2 G4 Paradigmas UnB
 maintainer:     example@example.com
-copyright:      2022 Author name here
+copyright:      2022 2022-2 G4 Paradigmas UnB
 license:        BSD3
 license-file:   LICENSE
 build-type:     Simple
@@ -21,11 +21,13 @@ extra-source-files:
 
 source-repository head
   type: git
-  location: https://github.com/githubuser/calculadora
+  location: https://github.com/UnBParadigmas2022-2/2022.2_G4_Funcional_Calculadora
 
 library
   exposed-modules:
       Lib
+      Operation
+      Parser
   other-modules:
       Paths_calculadora
   hs-source-dirs:
