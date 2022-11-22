@@ -1,22 +1,22 @@
-module Operation(calcula) where
+module Operation(calculate) where
 
 import Data.Char()
 import Parser(toList, strToNumber, getNumber)
 
-operacao :: (Int, [Char]) -> Int
-operacao (num, []) = num
-operacao (num, str) 
-    | h == '+'  = calcula(t) + num
-    | h == '-'  = calcula(t) - num
-    | otherwise = operacao(num, t)
+operation :: (Int, [Char]) -> Int
+operation (num, []) = num
+operation (num, str) 
+    | h == '+'  = calculate(t) + num
+    | h == '-'  = calculate(t) - num
+    | otherwise = operation(num, t)
     where h = head str
           t = tail str
 
-calcula :: [Char] -> Int
-calcula str = resultado(str)
+calculate :: [Char] -> Int
+calculate str = result(str)
 
-resultado :: ([Char]) -> Int
-resultado ([]) = 0
-resultado (str) = operacao(strToNumber(reverse(getNumber(h, t))), t)
+result :: ([Char]) -> Int
+result ([]) = 0
+result (str) = operation(strToNumber(reverse(getNumber(h, t))), t)
     where h = head str
           t = tail str

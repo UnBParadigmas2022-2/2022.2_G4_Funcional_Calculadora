@@ -1,6 +1,6 @@
 module Main (main) where
 
-import Operation
+import Operation(calculate)
 
 main :: IO ()
-main = print(calcula(reverse "200 - 2 + 4"))
+main = print(calculate(reverse "200 - 2 + 4"))
