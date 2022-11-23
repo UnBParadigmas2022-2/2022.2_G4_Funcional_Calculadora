@@ -5,16 +5,16 @@
 **Paradigma**: Funcional<br>
 
 ## Alunos
-|Matrícula | Aluno |
-| -- | -- |
-| 19/0124997  |  Amanda Jeniffer Pereira Nobre |
-| 19/0101792  |  Ana Carolina Rodrigues Leite |
-| 17/0101711  |  Daniel Barcelos Moreira |
-| 16/0119006  |  Enzo Gabriel Guedes Queiroz Saraiva |
-| 18/0018604  |  Hugo Sobral de Lima Salomão |
-| 18/0102711  |  Jaime Juan de Castro Feliciano Damasceno |
-| 18/0021974  |  Leonardo da Silva Gomes |
-| 17/0111288  |  Micaella Lorraine Gouveia de Lima |	
+| Matrícula  | Aluno                                    |
+| ---------- | ---------------------------------------- |
+| 19/0124997 | Amanda Jeniffer Pereira Nobre            |
+| 19/0101792 | Ana Carolina Rodrigues Leite             |
+| 17/0101711 | Daniel Barcelos Moreira                  |
+| 16/0119006 | Enzo Gabriel Guedes Queiroz Saraiva      |
+| 18/0018604 | Hugo Sobral de Lima Salomão              |
+| 18/0102711 | Jaime Juan de Castro Feliciano Damasceno |
+| 18/0021974 | Leonardo da Silva Gomes                  |
+| 17/0111288 | Micaella Lorraine Gouveia de Lima        |
 
 ## Sobre 
 Descreva o seu projeto em linhas gerais. 
@@ -70,10 +70,17 @@ OBS: TODOS DEVEM PARTICIPAR, CONFERINDO PONTOS DE VISTA.
 TEMPO: +/- 15min
 
 ## Participações
-Apresente, brevemente, como cada membro do grupo contribuiu para o projeto.
-|Nome do Membro | Contribuição | Significância da Contribuição para o Projeto (Excelente/Boa/Regular/Ruim/Nula) |
-| -- | -- | -- |
-| Fulano  |  Programação dos Fatos da Base de Conhecimento Lógica | Boa |
+| Nome do Membro                           | Contribuição                                         | Significância da Contribuição para o Projeto (Excelente/Boa/Regular/Ruim/Nula) |
+| ---------------------------------------- | ---------------------------------------------------- | ------------------------------------------------------------------------------ |
+| Fulano                                   | Programação dos Fatos da Base de Conhecimento Lógica | Boa                                                                            |
+| Amanda Jeniffer Pereira Nobre            | -                                                    | Boa                                                                            |
+| Ana Carolina Rodrigues Leite             | -                                                    | -                                                                              |
+| Daniel Barcelos Moreira                  | -                                                    | -                                                                              |
+| Enzo Gabriel Guedes Queiroz Saraiva      | -                                                    | -                                                                              |
+| Hugo Sobral de Lima Salomão              | -                                                    | -                                                                              |
+| Jaime Juan de Castro Feliciano Damasceno | -                                                    | -                                                                              |
+| Leonardo da Silva Gomes                  | -                                                    | -                                                                             |
+| Micaella Lorraine Gouveia de Lima        | -                                                    | -                                                                              |
 
 ## Outros 
 Quaisquer outras informações sobre o projeto podem ser descritas aqui. Não esqueça, entretanto, de informar sobre:
@@ -85,3 +92,5 @@ Quaisquer outras informações sobre o projeto podem ser descritas aqui. Não es
 ## Fontes
 Referencie, adequadamente, as referências utilizadas.
 Indique ainda sobre fontes de leitura complementares.
+
+>https://www.tutorialspoint.com/haskell/haskell_functions.htm
