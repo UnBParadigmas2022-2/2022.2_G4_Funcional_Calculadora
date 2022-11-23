@@ -1,4 +1,4 @@
-module Operation(calculate, exponential) where
+module Operation(calculate) where
 
 import Data.Char()
 import Parser(toList, strToNumber, getNumber)

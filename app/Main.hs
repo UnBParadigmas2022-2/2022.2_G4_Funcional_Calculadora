@@ -3,4 +3,4 @@ module Main (main) where
 import Operation(calculate)
 
 main :: IO ()
-main = print(calculate("3 - 20 + 1"))
+main = print(calculate("2 ^ 3 * 1 + 1"))
