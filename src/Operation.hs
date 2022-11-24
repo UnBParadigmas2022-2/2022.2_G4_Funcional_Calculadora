@@ -32,11 +32,16 @@ operation (num, str)
     where h = head str
           t = tail str
 
+getOperation :: ([Char]) -> (Int, [Char])
+getOperation str = (getNumber(h,t), t)
+    where h = head str
+          t = tail str 
+
 calculate :: [Char] -> Int
 calculate str = result(reverse str)
 
 result :: ([Char]) -> Int
 result ([])  = 0
-result (str) = operation(getNumber(h, t), multiplication(getNumber(h, t), exponential(getNumber(h, t),t)))
+result (str) = operation(getOperation(multiplication(getNumber(h, t), exponential(getNumber(h, t),t))))
     where h  = head str
           t  = tail str
