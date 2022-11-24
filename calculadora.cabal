@@ -27,6 +27,7 @@ library
   exposed-modules:
       Operation
       Parser
+      Run
   other-modules:
       Paths_calculadora
   hs-source-dirs:
