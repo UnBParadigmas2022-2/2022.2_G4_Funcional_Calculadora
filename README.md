@@ -1,4 +1,4 @@
-# NomeDoProjeto
+# Calculadora Funcional
 
 **Disciplina**: FGA0210 - PARADIGMAS DE PROGRAMAÇÃO - T01 <br>
 **Nro do Grupo**: 04<br>
@@ -17,9 +17,19 @@
 | 17/0111288 | Micaella Lorraine Gouveia de Lima        |
 
 ## Sobre 
-Descreva o seu projeto em linhas gerais. 
-Use referências, links, que permitam conhecer um pouco mais sobre o projeto.
-Capriche nessa seção, pois ela é a primeira a ser lida pelos interessados no projeto.
+O projeto consiste em uma calculadora funcional que tem a capacidade de ler expressões matemáticas e imprimir o resultado via terminal.
+Embora seu funcionamento pareça simples, a implementação desta aplicação se assemelha muito mais a um analisador léxico, dando a oportunidade de fazer a leitura de uma string como expressão, e realizar as devidas operações com as prioridades matemáticas respeitadas.
+
+A calculadora abrange as seguintes expressões:
+- Adição
+- Subtração
+- Multiplicação
+- Divisão
+- Exponencial
+
+
+A calculadora atende os seguintes casos de prioridade de operação:
+![calculadora](./assets/prioridades.png)
 
 ## Screenshots
 Adicione 2 ou mais screenshots do projeto em termos de interface e/ou funcionamento.
