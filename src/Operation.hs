@@ -1,14 +1,14 @@
 module Operation(calculate) where
 
 import Data.Char()
-import Parser(toList, strToNumber, getNumber)
+import Parser(toList, getNumber)
 
 
 exponential :: (Int, [Char]) -> [Char]
 exponential (num, []) = reverse(show(num))
 exponential (num, str)
-    | h == '+' || h == '-' || h == '*' || h == '/' = reverse(show(num)) ++ toList(h) ++ exponential(strToNumber(reverse(getNumber(head t, tail t))), t)
-    | h == '^'                                     = exponential(strToNumber(reverse(getNumber(head t, tail t))) ^ num, t)
+    | h == '+' || h == '-' || h == '*' || h == '/' = reverse(show(num)) ++ toList(h) ++ exponential(getNumber(head t, tail t), t)
+    | h == '^'                                     = exponential(getNumber(head t, tail t) ^ num, t)
     | otherwise                                    = exponential(num, t)
     where h = head str
           t = tail str
@@ -16,9 +16,9 @@ exponential (num, str)
 multiplication :: (Int, [Char]) -> [Char]
 multiplication (num, []) = reverse(show(num))
 multiplication (num, str)
-    | h == '+' || h == '-'  = reverse(show(num)) ++ toList(h) ++ multiplication(strToNumber(reverse(getNumber(head t, tail t))), t)
-    | h == '*'              = multiplication(strToNumber(reverse(getNumber(head t, tail t))) * num, t)
-    | h == '/'              = multiplication(strToNumber(reverse(getNumber(head t, tail t))) `div` num, t)
+    | h == '+' || h == '-'  = reverse(show(num)) ++ toList(h) ++ multiplication(getNumber(head t, tail t), t)
+    | h == '*'              = multiplication(getNumber(head t, tail t) * num, t)
+    | h == '/'              = multiplication(getNumber(head t, tail t) `div` num, t)
     | otherwise             = multiplication(num, t)
     where h = head str
           t = tail str
@@ -37,7 +37,6 @@ calculate str = result(reverse str)
 
 result :: ([Char]) -> Int
 result ([])  = 0
-result (str) = operation(strToNumber(reverse(getNumber(h, t))), multiplication(strToNumber(reverse(getNumber(h, t))), 
-               exponential(strToNumber(reverse(getNumber(h, t))),t)))
+result (str) = operation(getNumber(h, t), multiplication(getNumber(h, t), exponential(getNumber(h, t),t)))
     where h  = head str
           t  = tail str
