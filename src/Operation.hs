@@ -1,7 +1,7 @@
 module Operation(calculate) where
 
 import Data.Char()
-import Parser(toList, getNumber)
+import Parser(toList, getNumber, getBeforeNumber)
 
 
 exponential :: (Int, [Char]) -> [Char]
@@ -10,6 +10,19 @@ exponential (num, str)
     | h == '+' || h == '-' || h == '*' || h == '/' = reverse(show(num)) ++ toList(h) ++ exponential(getNumber(t), t)
     | h == 'ˆ' || h == '^'                         = exponential(getNumber(t) ^ num, t)
     | otherwise                                    = exponential(num, t)
+    where h = head str
+          t = tail str
+
+calculateSquareRoot :: Int -> Int
+calculateSquareRoot n = try n where
+   try i | i * i > n = try (i - 1) 
+         | i * i <= n = i
+
+squareRoot :: ([Char], [Char]) -> [Char]
+squareRoot (support, []) = support
+squareRoot (support, str)
+    | h == 'V'              = support ++ show(calculateSquareRoot(strToNumber(getNumber(head t, tail t)))) ++ getBeforeNumber("", t)
+    | otherwise             = squareRoot(support ++ toList(h), t)
     where h = head str
           t = tail str
 
