@@ -54,5 +54,5 @@ calculate str = result(reverse str)
 
 result :: ([Char]) -> Int
 result ([])  = 0
-result (str) = operation(getOperation(multiplication(getOperation(exponential(getNumber(str),t)))))
+result (str) = operation(getOperation(multiplication(getOperation(squareRoot("",exponential(getNumber(str),t))))))
     where t  = tail str
