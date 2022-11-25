@@ -4,6 +4,33 @@ import Data.Char()
 import Parser(toList, getNumber, getBeforeNumber)
 
 
+-- Adiciona tudo o que está dentro dos parenteses
+getContent :: ([Char], [Char]) -> [Char]
+getContent (support, str)
+    | h == ')'  = support
+    | otherwise = getContent(support ++ toList(h), t)
+    where h = head str
+          t = tail str
+
+-- Realiza a operação de dentro do parenteses
+getParanthesesContent :: [Char] -> [Char]
+getParanthesesContent str = show(basicOperation(getContent("", str)))
+    
+-- Pega o que está depois do parênteses
+getAfterParentheses :: [Char] -> [Char]
+getAfterParentheses str
+    | h == ')' = t
+    | otherwise = getAfterParentheses(t)
+    where h = head str
+          t = tail str
+
+parentheses :: ([Char], [Char]) -> [Char]
+parentheses (support, str)
+    | h == '(' = support ++ getParanthesesContent(t) ++ getAfterParentheses(t)
+    | otherwise = parentheses(support ++ toList(h), t)
+    where h = head str
+          t = tail str
+
 exponential :: (Int, [Char]) -> [Char]
 exponential (num, []) = reverse(show(num))
 exponential (num, str)
@@ -39,8 +66,8 @@ multiplication (num, str)
 operation :: (Int, [Char]) -> Int
 operation (num, []) = num
 operation (num, str) 
-    | h == '+'  = result(t) + num
-    | h == '-'  = result(t) - num
+    | h == '+'  = basicOperation(t) + num
+    | h == '-'  = basicOperation(t) - num
     | otherwise = operation(num, t)
     where h = head str
           t = tail str
@@ -52,7 +79,11 @@ getOperation str = (getNumber(str), t)
 calculate :: [Char] -> Int
 calculate str = result(reverse str)
 
+basicOperation :: ([Char]) -> Int
+basicOperation ([])  = 0
+basicOperation str = operation(getOperation(multiplication(getOperation(exponential(getNumber(str),t)))))
+    where t  = tail str
+
 result :: ([Char]) -> Int
 result ([])  = 0
-result (str) = operation(getOperation(multiplication(getOperation(squareRoot("",exponential(getNumber(str),t))))))
-    where t  = tail str
+result (str) = basicOperation(parentheses("", str))
