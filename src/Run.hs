@@ -1,8 +1,9 @@
 module Run(run) where
 
-import Operation(calculate)
-import Parser(removeWhiteSpace)
-import Handler(validate, validWhiteSpace)
+import Operation(basicOperation)
+import Parentheses(parentheses)
+import Parser(removeWhiteSpace, getOperation)
+import Handler(isValid, validWhiteSpace)
 import System.Exit
 
 run :: IO()
@@ -33,19 +34,17 @@ read_ = do
   putStrLn "Insira abaixo a expressão, ou ENTER para sair:"
   expr <- getLine
 
-  print (removeWhiteSpace("", expr))
+  if expr == ""
+    then closeProgram
+    else return()
 
   if validWhiteSpace(head expr, tail expr)
    then return()
    else printErro
 
-  if validate(removeWhiteSpace("", expr))
+  if isValid(removeWhiteSpace("", expr))
     then return()
     else printErro
-
-  if expr == ""
-    then closeProgram
-    else return()
 
   putStrLn ""
   putStrLn("A expressao digitada foi: " ++ expr)
@@ -66,3 +65,10 @@ closeProgram = do
   putStrLn "Parando..."
   putStrLn "---------------------------"
   exitWith ExitSuccess
+
+result :: ([Char]) -> Int
+result ([])  = 0
+result (str) = basicOperation(parentheses("", str))
+
+calculate :: [Char] -> Int
+calculate str = result(str)

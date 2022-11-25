@@ -1,13 +1,4 @@
-module Parser
-(
-    toList
-    ,getNumber
-    ,getBeforeNumber
-    ,getArrayNumber
-    ,strToNumber
-    ,isSymbol
-    ,removeWhiteSpace
-) where
+module Parser(toList, getNumber, getAfterNumber, isSymbol, removeWhiteSpace, getOperation) where
 
 import Data.Char()
 
@@ -20,29 +11,39 @@ isSymbol (symbol, str)
     | otherwise = False
     where h = head str
 
-getNumber :: ([Char]) -> Int
-getNumber str = strToNumber(reverse(getArrayNumber(h, t))) 
-    where h = head str
-          t = tail str
+-------------------------------
+
+getOperation :: (Char, [Char]) -> (Int, [Char])
+getOperation (aux, str)
+    | aux == 'r' = (getNumber(aux, str), t)
+    | otherwise  = (getNumber('_', str), t)
+    where t = tail str
+
+getNumber :: (Char, [Char]) -> Int
+getNumber (aux, (h:t))
+    | aux == 'r' = strToNumber(reverse(getArrayNumber(h, t)))
+    | otherwise  = strToNumber(getArrayNumber(h, t)) 
 
 strToNumber :: [Char] -> Int
 strToNumber str =  read str :: Int
 
 getArrayNumber :: (Char, [Char]) -> [Char]
 getArrayNumber (char, []) = toList char
-getArrayNumber (char, str) 
-    | h /= '+' && h /= '-' && h /= '*' && h /= '/' && h /= 'ˆ' && h /= '^' = toList char ++ getArrayNumber(h, t)
-    | otherwise                                                            = toList char
-    where h = head str
-          t = tail str
+getArrayNumber (char, (h:t)) 
+    | h /= '+' && h /= '-' && h /= '*' && h /= '/' && h /= 'V' && h /= 'ˆ' && h /= '^' = toList char ++ getArrayNumber(h, t)
+    | otherwise                                                                        = toList char
 
-getBeforeNumber :: ([Char], [Char]) -> [Char]
-getBeforeNumber (support, []) = support
-getBeforeNumber (support, str) 
-    | h == '+' && h == '-' && h == '*' && h == '/' && h == 'V' && h == 'ˆ' && h == '^' = str
-    | otherwise                                                                        = getBeforeNumber ("", t)
-    where h = head str
-          t = tail str
+-------------------------------
+
+getAfterNumber :: ([Char]) -> [Char]
+getAfterNumber ([]) = ""
+getAfterNumber (str) 
+    | h == '+' || h == '-' || h == '*' || h == '/' || h == 'V' || h == 'ˆ' || h == '^' = str
+    | otherwise                                                                        = getAfterNumber(t)
+    where t = tail str
+          h = head str
+
+-------------------------------
 
 removeWhiteSpace :: ([Char], [Char]) -> [Char]
 removeWhiteSpace (support, []) = support

@@ -1,32 +1,36 @@
-module Handler(validate, validWhiteSpace) where
+module Handler(isValid, validWhiteSpace) where
 
 import Data.Char(isDigit)
-import Parser(toList, removeWhiteSpace)
 
 
+isValid :: [Char] -> Bool
+isValid (str)
+    | not(strValidate(str))                 = False --- Verifica se tem simbolo invalido
+    | head(reverse(str)) == ')'             = True  --- Verifica se o ultimo caracter é )
+    | validToken(head(reverse(str)))        = False --- Verifica se termina com algum time inválido
+    | validInitialOperator(head str)        = False --- Verifica se começa com algum time inválido
+    | otherwise                             = True
 
-validate :: [Char] -> Bool
-validate [] = True
-validate (str)
+strValidate :: [Char] -> Bool
+strValidate [] = True
+strValidate (str)
     | not (validToken h) && not (isDigit h) = False
-    | validToken(head(reverse(str)))        = False
-    | validInitialOperator(h)               = False
-    | otherwise                             = validate t 
+    | otherwise                             = strValidate t 
     where h = head str
           t = tail str
 
 validToken :: Char -> Bool
 validToken char 
-    | char == '+' || char == '-' || char == '*' || char == '/' || char == 'ˆ' || char == '^' || char == 'v' || char == 'V' = True
-    | otherwise                                                                                                            = False
+    | char == '+' || char == '-' || char == '*' || char == '/' || char == 'ˆ' || char == '^' || char == 'v' || char == 'V' || char == '(' || char == ')' = True
+    | otherwise                                                                                                                                          = False
 
 validInitialOperator :: Char -> Bool
 validInitialOperator char 
-    | char == '*' || char == '/' || char == 'ˆ' || char == '^' = True
-    | otherwise                                                = False
+    | char == '*' || char == '/' || char == 'ˆ' || char == '^' || char == ')' = True
+    | otherwise                                                               = False
 
 validWhiteSpace :: (Char, [Char]) -> Bool
-validWhiteSpace (char, []) = True
+validWhiteSpace (_, []) = True
 validWhiteSpace (char, (h:t))
     | isDigit char && h == ' ' = isNextAToken (t)
     | otherwise = validWhiteSpace(h, t)
