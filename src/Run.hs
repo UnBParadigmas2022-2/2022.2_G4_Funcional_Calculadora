@@ -1,6 +1,7 @@
 module Run(run) where
 
 import Operation(calculate)
+import Handler(validate)
 import System.Exit
 
 run :: IO()
@@ -22,6 +23,15 @@ read_ = do
   putStrLn ""
   putStrLn "Insira abaixo a expressão, ou ENTER para sair:"
   expr <- getLine
+
+  if validate(expr)
+    then return()
+    else do 
+      putStrLn "---------------------------"
+      putStrLn ""
+      putStrLn "Insira uma expressão válida"
+      putStrLn ""
+      read_
 
   if expr == ""
     then closeProgram

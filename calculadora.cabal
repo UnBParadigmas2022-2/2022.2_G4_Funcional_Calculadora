@@ -28,6 +28,7 @@ library
       Operation
       Parser
       Run
+      Handler
   other-modules:
       Paths_calculadora
   hs-source-dirs:
