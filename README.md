@@ -53,7 +53,7 @@ docker build -t g4_funcional_calculadora .
 Uma vez executado o comando de `build`, é necessário então instanciar um container a partir da imagem. É possível realizar isso com o comando:
 
 ```
-docker run --name calculadora g4_funcional_calculadora
+docker run -it --name calculadora g4_funcional_calculadora
 ```
 
 Para executar o container parado, então, basta executar o seguinte comando:
@@ -100,7 +100,13 @@ Quaisquer outras informações sobre o projeto podem ser descritas aqui. Não es
 (iV) Trabalhos Futuros.
 
 ## Fontes
-Referencie, adequadamente, as referências utilizadas.
-Indique ainda sobre fontes de leitura complementares.
+Aqui estão listadas as fontes ou links relevantes utilizados para a codificação do projeto.
 
->https://www.tutorialspoint.com/haskell/haskell_functions.htm
+> https://www.tutorialspoint.com/haskell/haskell_functions.htm. Acesso em 21/11/2022.
+> https://github.com/JudsonSS/Compiladores Acesso em 19/11/2022.  
+> https://www.youtube.com/watch?v=nckWiHmeNXU Acesso em 19/11/2022.  
+> https://hackage.haskell.org/package/base-4.17.0.0/docs/Data-Char.html Acesso em 22/11/2022.     
+> https://hub.docker.com/_/haskell Acesso em 19/11/2022.      
+> https://hackage.haskell.org/package/base-4.17.0.0/docs/System-Exit.html Acesso em 23/11/2022.
+> https://stackoverflow.com/questions/25457287/couldnt-match-type-maybe-with-io-expected-type-io-string-actual-type-may Acesso em 23/11/2022.  
+> https://stackoverflow.com/questions/48177824/how-does-return-statement-work-in-haskell Acesso em 23/11/2022.
