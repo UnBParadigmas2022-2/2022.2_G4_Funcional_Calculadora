@@ -1,12 +1,21 @@
 module Run(run) where
 
 import Operation(calculate)
-import Handler(validate)
+import Parser(removeWhiteSpace)
+import Handler(validate, validWhiteSpace)
 import System.Exit
 
 run :: IO()
 run = do
     printHeader
+    read_
+
+printErro :: IO()
+printErro = do 
+    putStrLn "---------------------------"
+    putStrLn ""
+    putStrLn "Insira uma expressão válida"
+    putStrLn ""
     read_
 
 printHeader :: IO()
@@ -24,14 +33,15 @@ read_ = do
   putStrLn "Insira abaixo a expressão, ou ENTER para sair:"
   expr <- getLine
 
-  if validate(expr)
+  print (removeWhiteSpace("", expr))
+
+  if validWhiteSpace(head expr, tail expr)
+   then return()
+   else printErro
+
+  if validate(removeWhiteSpace("", expr))
     then return()
-    else do 
-      putStrLn "---------------------------"
-      putStrLn ""
-      putStrLn "Insira uma expressão válida"
-      putStrLn ""
-      read_
+    else printErro
 
   if expr == ""
     then closeProgram
@@ -48,7 +58,7 @@ read_ = do
 
   putStrLn ""
   putStrLn "---------Resultado---------"
-  print("" ++ expr ++ " = " ++ show(calculate(expr)) ++ "")
+  print("" ++ expr ++ " = " ++ show(calculate(removeWhiteSpace("", expr))) ++ "")
   read_
 
 closeProgram :: IO()

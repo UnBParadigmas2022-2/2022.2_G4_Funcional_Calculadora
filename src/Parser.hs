@@ -6,6 +6,7 @@ module Parser
     ,getArrayNumber
     ,strToNumber
     ,isSymbol
+    ,removeWhiteSpace
 ) where
 
 import Data.Char()
@@ -42,3 +43,9 @@ getBeforeNumber (support, str)
     | otherwise                                                                        = getBeforeNumber ("", t)
     where h = head str
           t = tail str
+
+removeWhiteSpace :: ([Char], [Char]) -> [Char]
+removeWhiteSpace (support, []) = support
+removeWhiteSpace (support, (h:t))
+    | h == ' '  = removeWhiteSpace(support, t)
+    | otherwise = removeWhiteSpace(support ++ toList(h), t)
