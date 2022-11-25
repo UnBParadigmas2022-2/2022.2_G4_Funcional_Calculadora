@@ -4,9 +4,12 @@ import Data.Char(isDigit)
 
 validate :: [Char] -> Bool
 validate [] = True
-validate (h:t)
+validate (str)
     | not (validToken h) && not (isDigit h) = False
-    | otherwise                 = validate t 
+    | validToken(head(reverse(str)))          = False
+    | otherwise                             = validate t 
+    where h = head str
+          t = tail str
 
 validToken :: Char -> Bool
 validToken char 
