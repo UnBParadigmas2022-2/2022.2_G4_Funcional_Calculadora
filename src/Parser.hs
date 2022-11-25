@@ -3,12 +3,21 @@ module Parser
     toList
     ,getNumber
     ,getBeforeNumber
+    ,getArrayNumber
+    ,strToNumber
+    ,isSymbol
 ) where
 
 import Data.Char()
 
 toList :: Char -> [Char]
 toList a = [a]
+
+isSymbol :: (Char, [Char]) -> Bool
+isSymbol (symbol, str) 
+    | h == symbol = True
+    | otherwise = False
+    where h = head str
 
 getNumber :: ([Char]) -> Int
 getNumber str = strToNumber(reverse(getArrayNumber(h, t))) 
@@ -30,6 +39,6 @@ getBeforeNumber :: ([Char], [Char]) -> [Char]
 getBeforeNumber (support, []) = support
 getBeforeNumber (support, str) 
     | h == '+' && h == '-' && h == '*' && h == '/' && h == 'V' && h == 'ˆ' && h == '^' = str
-    | otherwise                                    = getBeforeNumber ("", t)
+    | otherwise                                                                        = getBeforeNumber ("", t)
     where h = head str
           t = tail str
