@@ -26,13 +26,14 @@ A calculadora abrange as seguintes expressões:
 - Multiplicação
 - Divisão
 - Exponencial
-
+- Raiz Quadrada
 
 A calculadora atende os seguintes casos de prioridade de operação:
 ![calculadora](./assets/prioridades.png)
 
 ## Screenshots
-Adicione 2 ou mais screenshots do projeto em termos de interface e/ou funcionamento.
+![1](./assets/img1.jpg)
+![2](./assets/img2.jpg)
 
 ## Instalação 
 **Linguagens**: Haskell<br>
@@ -65,39 +66,49 @@ docker start -a calculadora
 > Gifs animados e outras ilustrações são bem-vindos!
 
 ## Uso 
-Explique como usar seu projeto.
-Procure ilustrar em passos, com apoio de telas do software, seja com base na interface gráfica, seja com base no terminal.
-Nessa seção, deve-se revelar de forma clara sobre o funcionamento do software.
+Após rodar o docker com o comando
+
+```
+docker start -a calculadora
+```
+
+A calculadora será iniciada, sendo possível já escrever suas expressões para serem calculadas :) 
+
 
 ## Vídeo
-Adicione 1 ou mais vídeos com a execução do projeto.
-Procure: 
-(i) Introduzir o projeto;
-(ii) Mostrar passo a passo o código, explicando-o, e deixando claro o que é de terceiros, e o que é contribuição real da equipe;
-(iii) Apresentar particularidades do Paradigma, da Linguagem, e das Tecnologias, e
-(iV) Apresentar lições aprendidas, contribuições, pendências, e ideias para trabalhos futuros.
-OBS: TODOS DEVEM PARTICIPAR, CONFERINDO PONTOS DE VISTA.
-TEMPO: +/- 15min
+[Link do vídeo no youtube](https://youtu.be/kEsykn0DmYA)
 
 ## Participações
-| Nome do Membro                           | Contribuição                                         | Significância da Contribuição para o Projeto (Excelente/Boa/Regular/Ruim/Nula) |
-| ---------------------------------------- | ---------------------------------------------------- | ------------------------------------------------------------------------------ |
-| Fulano                                   | Programação dos Fatos da Base de Conhecimento Lógica | Boa                                                                            |
-| Amanda Jeniffer Pereira Nobre            | -                                                    | Boa                                                                            |
-| Ana Carolina Rodrigues Leite             | -                                                    | -                                                                              |
-| Daniel Barcelos Moreira                  | -                                                    | -                                                                              |
-| Enzo Gabriel Guedes Queiroz Saraiva      | -                                                    | -                                                                              |
-| Hugo Sobral de Lima Salomão              | -                                                    | -                                                                              |
-| Jaime Juan de Castro Feliciano Damasceno | -                                                    | -                                                                              |
-| Leonardo da Silva Gomes                  | -                                                    | -                                                                             |
-| Micaella Lorraine Gouveia de Lima        | -                                                    | -                                                                              |
+| Nome do Membro | Contribuição | Significância da Contribuição para o Projeto (Excelente/Boa/Regular/Ruim/Nula) |
+| - | - | - |
+| Amanda Jeniffer Pereira Nobre | Desenvolvimento da operação de exponencial | Boa |
+| Ana Carolina Rodrigues Leite | Desenvolvimento da operação de raiz quadrada | Regular |
+| Daniel Barcelos Moreira | Verificação léxica e parte da verificação sintática da expressão | Boa |
+| Enzo Gabriel Guedes Queiroz Saraiva | Verificação léxica e parte da verificação sintática da expressão, desacoplamento da operação de recuperar os números da expressão | Regular |
+| Hugo Sobral de Lima Salomão | Dockerização, estruturação do projeto, desenvolvimento da subtração, divisão, multiplicação e auxílio na criação das outras operações, refatoração do código para modularização | Excelente |
+| Jaime Juan de Castro Feliciano Damasceno | Desenvolvimento da operação de exponencial | Regular |
+| Leonardo da Silva Gomes | Desenvolvimento do parser, casts, soma, divisão, multiplicação e auxílio na criação das outras operações, refatoração do código para modularização | Excelente |
+| Micaella Lorraine Gouveia de Lima | Desenvolvimento da interface com usuário e tratamento de parênteses, refatoração do código para modularização | Excelente |
 
 ## Outros 
-Quaisquer outras informações sobre o projeto podem ser descritas aqui. Não esqueça, entretanto, de informar sobre:
-(i) Lições Aprendidas;
-(ii) Percepções;
-(iii) Contribuições e Fragilidades, e
-(iV) Trabalhos Futuros.
+
+### Lições Aprendidas
+- A maior lição aprendida foi lidar com recursividade. Não apenas criar funções recursivas, mas pensar na estrutura da solução recursivamente. Foi um grande desafio lidar, necessariamente, com recursividade em problemas que estamos condicionados a resolver de maneira procedural.
+
+- Propagar informações a partir de variáveis imutáveis. Em haskell, um conceito fortemente utilizado é o de funções puras, isto é, não é possível ter mutabilidade nos estados das funções. Isso implica em modificar a forma da manipulação da informação para que esta se adeque ao conceito das funções puras. 
+
+- Como lidamos com o tratamento das strings para interpretar as expressões matemáticas, o grupo adquiriu um conhecimento bastante relevante na análise sintática das expressões.
+
+### Percepções
+Durante o planejamento e desenvolvimento do projeto foi observada uma dificuldade do grupo com a linguagem Haskell. O tema foi definido por todos os membros, e a maior motivação foi a possibilidade de escalar a dificuldade do projeto conforme o grupo fosse dominando a nova linguagem. 
+
+No início do desenvolvimento e ao decorrer dos dias, alguns alunos tiveram mais facilidade com a linguagem e conseguiram iniciar o projeto. O que foi notado é que, na semana de desenvolvimento, os outros alunos conseguiram recorrer aos alunos com mais entendimento para realização de pareamentos, aumentando o nível de entendimento e contribuição de cada membro.
+
+### Trabalhos Futuros
+1. Exponencial de exponencial
+2. API
+3. Tratamento de colchetes e chaves
+
 
 ## Fontes
 Aqui estão listadas as fontes ou links relevantes utilizados para a codificação do projeto.
