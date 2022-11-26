@@ -1,17 +1,23 @@
 module Multiplication(multiplication) where
 
 import Data.Char()
-import Parser(toList, getNumber, getOperation)
+import Parser(toList, getNumber, getOperation, )
 
 multiplication :: [Char] -> [Char]
-multiplication str = multiplicationOperation(getOperation('_', str))
+multiplication str
+    | h == '+' || h == '-' = toList(h) ++ multiplicationOperation(getOperation('_', t))
+    | otherwise            = multiplicationOperation(getOperation('_', str))
+    where h = head str
+          t = tail str
 
 multiplicationOperation :: (Int, [Char]) -> [Char]
 multiplicationOperation (num, []) = show(num)
 multiplicationOperation (num, str)
-    | h == '+' || h == '-' = show(num) ++ toList(h) ++ multiplicationOperation(getOperation('_', t))
-    | h == '*'             = multiplicationOperation(getNumber('_', t) * num, t)
-    | h == '/'             = multiplicationOperation(getNumber('_', t) `div` num, t)
-    | otherwise            = multiplicationOperation(num, t)
+    | h == '+' || h == '-'              = show(num) ++ toList(h) ++ multiplicationOperation(getOperation('_', t))
+    | h == '*' && head t == '-'         = multiplicationOperation(negate(num * getNumber('_', tail t)), tail t)
+    | h == '*' && head t == '+'         = multiplicationOperation(num * getNumber('_', tail t), tail t)
+    | h == '*'                          = multiplicationOperation(num * getNumber('_', t), t)
+    | h == '/'                          = multiplicationOperation(num `div` getNumber('_', t), t)
+    | otherwise                         = multiplicationOperation(num, t)
     where h = head str
           t = tail str

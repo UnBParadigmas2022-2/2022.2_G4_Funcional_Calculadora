@@ -5,11 +5,11 @@ import Data.Char(isDigit)
 
 isValid :: [Char] -> Bool
 isValid (str)
-    | not(strValidate(str))                 = False --- Verifica se tem simbolo invalido
-    | head(reverse(str)) == ')'             = True  --- Verifica se o ultimo caracter é )
-    | validToken(head(reverse(str)))        = False --- Verifica se termina com algum time inválido
-    | validInitialOperator(head str)        = False --- Verifica se começa com algum time inválido
-    | otherwise                             = True
+    | not(strValidate(str))          = False --- Verifica se tem simbolo invalido
+    | head(reverse(str)) == ')'      = True  --- Verifica se o ultimo caracter é )
+    | validToken(head(reverse(str))) = False --- Verifica se termina com algum time inválido
+    | validInitialOperator(head str) = False --- Verifica se começa com algum time inválido
+    | otherwise                      = True
 
 strValidate :: [Char] -> Bool
 strValidate [] = True

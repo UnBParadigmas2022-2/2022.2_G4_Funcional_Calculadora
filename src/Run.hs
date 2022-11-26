@@ -2,8 +2,14 @@ module Run(run) where
 
 import Operation(basicOperation)
 import Parentheses(parentheses)
-import Parser(removeWhiteSpace, getOperation)
 import Handler(isValid, validWhiteSpace)
+import Parser(removeWhiteSpace, getOperation, getArrayWithoutSequenceOfPlusLess, getNumber)
+
+import Exponential(exponential)
+import SquareRoot(squareRoot)
+import Multiplication(multiplication)
+import SumSubtraction(sumSubtraction)
+
 import System.Exit
 
 run :: IO()
@@ -57,7 +63,7 @@ read_ = do
 
   putStrLn ""
   putStrLn "---------Resultado---------"
-  print("" ++ expr ++ " = " ++ show(calculate(removeWhiteSpace("", expr))) ++ "")
+  print("" ++ expr ++ " = " ++ show(calculate(getArrayWithoutSequenceOfPlusLess("", removeWhiteSpace("", expr)))) ++ "")
   read_
 
 closeProgram :: IO()
@@ -68,7 +74,7 @@ closeProgram = do
 
 result :: ([Char]) -> Int
 result ([])  = 0
-result (str) = basicOperation(parentheses("", str))
+result (str) = basicOperation(getArrayWithoutSequenceOfPlusLess("", parentheses("", str)))
 
 calculate :: [Char] -> Int
 calculate str = result(str)

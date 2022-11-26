@@ -1,6 +1,6 @@
-module Parser(toList, getNumber, getAfterNumber, isSymbol, removeWhiteSpace, getOperation) where
+module Parser(toList, getNumber, getAfterNumber, isSymbol, removeWhiteSpace, getOperation, getArrayWithoutSequenceOfPlusLess) where
 
-import Data.Char()
+import Data.Char(isDigit)
 
 toList :: Char -> [Char]
 toList a = [a]
@@ -35,6 +35,14 @@ getArrayNumber (char, (h:t))
 
 -------------------------------
 
+getAfterToken :: ([Char]) -> [Char]
+getAfterToken ([]) = ""
+getAfterToken (str) 
+    | isDigit h = str
+    | otherwise = getAfterToken(t)
+    where t = tail str
+          h = head str
+
 getAfterNumber :: ([Char]) -> [Char]
 getAfterNumber ([]) = ""
 getAfterNumber (str) 
@@ -50,3 +58,27 @@ removeWhiteSpace (support, []) = support
 removeWhiteSpace (support, (h:t))
     | h == ' '  = removeWhiteSpace(support, t)
     | otherwise = removeWhiteSpace(support ++ toList(h), t)
+
+-------------------------------
+
+resumePlusLess :: (Char, [Char]) -> [Char]
+resumePlusLess (char, (h:t))
+    | char == '+' && h == '-' = resumePlusLess('-', t)
+    | char == '-' && h == '+' = resumePlusLess('-', t)
+    | char == h               = resumePlusLess('+', t)
+    | otherwise               = toList char
+
+getAfterPlusLess :: ([Char]) -> [Char]
+getAfterPlusLess ([]) = ""
+getAfterPlusLess (str) 
+    | h /= '+' && h /= '-' = str
+    | otherwise = getAfterToken(t)
+    where t = tail str
+          h = head str
+
+getArrayWithoutSequenceOfPlusLess :: ([Char], [Char]) -> [Char]
+getArrayWithoutSequenceOfPlusLess (support, []) = support
+getArrayWithoutSequenceOfPlusLess (support, (h:[])) = support ++ toList(h)
+getArrayWithoutSequenceOfPlusLess (support, (h:t))
+    | h == '+' || h == '-' = support ++ resumePlusLess(h, t) ++ getArrayWithoutSequenceOfPlusLess("", getAfterPlusLess(t))
+    | otherwise            = getArrayWithoutSequenceOfPlusLess(support ++ toList(h), t)

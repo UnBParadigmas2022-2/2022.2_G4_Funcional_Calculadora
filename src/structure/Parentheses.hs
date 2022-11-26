@@ -1,7 +1,7 @@
 module Parentheses(parentheses) where
 
 import Data.Char()
-import Parser(toList)
+import Parser(toList, getArrayWithoutSequenceOfPlusLess)
 import Operation(basicOperation)
 
 -- Adiciona tudo o que está dentro dos parenteses
@@ -14,13 +14,13 @@ getContent (support, str)
 
 -- Realiza a operação de dentro do parenteses
 getParanthesesContent :: [Char] -> [Char]
-getParanthesesContent str = show(basicOperation(getContent("", str)))
+getParanthesesContent str = show(basicOperation(getArrayWithoutSequenceOfPlusLess("", getContent("", str))))
     
 -- Pega o que está depois do parênteses
 getAfterParentheses :: [Char] -> [Char]
 getAfterParentheses [] = ""
 getAfterParentheses str
-    | h == ')' = t
+    | h == ')'  = t
     | otherwise = getAfterParentheses(t)
     where h = head str
           t = tail str
@@ -28,7 +28,7 @@ getAfterParentheses str
 parentheses :: ([Char], [Char]) -> [Char]
 parentheses (support, []) = support
 parentheses (support, str)
-    | h == '(' = support ++ getParanthesesContent(t) ++ getAfterParentheses(t)
+    | h == '('  = support ++ getParanthesesContent(t) ++ getAfterParentheses(t)
     | otherwise = parentheses(support ++ toList(h), t)
     where h = head str
           t = tail str
