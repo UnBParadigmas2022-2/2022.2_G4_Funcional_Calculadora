@@ -62,7 +62,7 @@ read_ = do
 
   putStrLn ""
   putStrLn "---------Resultado---------"
-  print("" ++ expr ++ " = " ++ show(calculate(getArrayWithoutSequenceOfPlusLess("", removeWhiteSpace("", expr)))) ++ "")
+  print(expr ++ " = " ++ show(calculate expr))
   read_
 
 -- Used to exit program properly 
@@ -75,4 +75,4 @@ closeProgram = do
 -- Wrap math module call 
 calculate :: ([Char]) -> Int
 calculate ([])  = 0
-calculate (str) = basicOperation(getArrayWithoutSequenceOfPlusLess("", parentheses("", str)))
+calculate (str) = basicOperation(getArrayWithoutSequenceOfPlusLess("", parentheses("", removeWhiteSpace("", str))))

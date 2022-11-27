@@ -1,4 +1,4 @@
-module Handler(isValid, validWhiteSpace) where
+module Handler(isValid, validWhiteSpace, isNextEmpty) where
 
 import Data.Char(isDigit)
 
@@ -47,3 +47,8 @@ isNextAToken (h:t)
     | validToken h = True
     | isDigit h = False
     | otherwise = isNextAToken t
+
+-- Verify if next character ends string
+isNextEmpty :: [Char] -> Bool
+isNextEmpty [] = True
+isNextEmpty _ = False
