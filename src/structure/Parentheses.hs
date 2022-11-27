@@ -4,7 +4,7 @@ import Data.Char()
 import Parser(toList, getArrayWithoutSequenceOfPlusLess)
 import Operation(basicOperation)
 
--- Adiciona tudo o que está dentro dos parenteses
+-- Return expression that is inside parentheses
 getContent :: ([Char], [Char]) -> [Char]
 getContent (support, str)
     | h == ')'  = support
@@ -12,11 +12,11 @@ getContent (support, str)
     where h = head str
           t = tail str
 
--- Realiza a operação de dentro do parenteses
+-- Return result of expression inside parentheses
 getParanthesesContent :: [Char] -> [Char]
 getParanthesesContent str = show(basicOperation(getArrayWithoutSequenceOfPlusLess("", getContent("", str))))
     
--- Pega o que está depois do parênteses
+-- Return whatever expression is after parentheses
 getAfterParentheses :: [Char] -> [Char]
 getAfterParentheses [] = ""
 getAfterParentheses str
@@ -24,7 +24,8 @@ getAfterParentheses str
     | otherwise = getAfterParentheses(t)
     where h = head str
           t = tail str
-
+          
+-- Wrap all parentheses logic in one function call 
 parentheses :: ([Char], [Char]) -> [Char]
 parentheses (support, []) = support
 parentheses (support, str)

@@ -2,9 +2,11 @@ module SumSubtraction(sumSubtraction) where
 
 import Parser(getOperation, getAfterNumber)
 
+-- Wrap simple operations handling in one function
 sumSubtraction :: [Char] -> Int
 sumSubtraction str = sumSubtractionOperation(getOperation('r', str))
 
+-- Recursive function call to handle valid expression cases
 sumSubtractionOperation :: (Int, [Char]) -> Int 
 sumSubtractionOperation (num, []) = num
 sumSubtractionOperation (num, str)

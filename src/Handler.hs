@@ -3,6 +3,7 @@ module Handler(isValid, validWhiteSpace) where
 import Data.Char(isDigit)
 
 
+-- Function used to validate sring expressions
 isValid :: [Char] -> Bool
 isValid (str)
     | not(strValidate(str))          = False --- Verifica se tem simbolo invalido
@@ -11,6 +12,7 @@ isValid (str)
     | validInitialOperator(head str) = False --- Verifica se começa com algum time inválido
     | otherwise                      = True
 
+-- Function to validate lexical components of calculator grammar
 strValidate :: [Char] -> Bool
 strValidate [] = True
 strValidate (str)
@@ -19,22 +21,26 @@ strValidate (str)
     where h = head str
           t = tail str
 
+-- Function used to wrap all valid tokens
 validToken :: Char -> Bool
 validToken char 
     | char == '+' || char == '-' || char == '*' || char == '/' || char == 'ˆ' || char == '^' || char == 'v' || char == 'V' || char == '(' || char == ')' = True
     | otherwise                                                                                                                                          = False
 
+-- Function used to validate first digit
 validInitialOperator :: Char -> Bool
 validInitialOperator char 
     | char == '*' || char == '/' || char == 'ˆ' || char == '^' || char == ')' = True
     | otherwise                                                               = False
 
+-- Function used to block a numbers chain in a sequence of spaces
 validWhiteSpace :: (Char, [Char]) -> Bool
 validWhiteSpace (_, []) = True
 validWhiteSpace (char, (h:t))
     | isDigit char && h == ' ' = isNextAToken (t)
     | otherwise = validWhiteSpace(h, t)
 
+-- Function used to verify if next token is an allowed token in validWhiteSpace case
 isNextAToken :: [Char] -> Bool
 isNextAToken ([]) = True
 isNextAToken (h:t)

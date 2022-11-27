@@ -3,23 +3,26 @@ module Run(run) where
 import Operation(basicOperation)
 import Parentheses(parentheses)
 import Handler(isValid, validWhiteSpace)
-import Parser(removeWhiteSpace, getOperation, getArrayWithoutSequenceOfPlusLess, getNumber)
+import Parser(removeWhiteSpace, getArrayWithoutSequenceOfPlusLess)
 
 import System.Exit
 
+-- Wrap system execution in one function 
 run :: IO()
 run = do
     printHeader
     read_
 
-printErro :: IO()
-printErro = do 
+-- Show error interface when expression is invalid
+printError :: IO()
+printError = do 
     putStrLn "---------------------------"
     putStrLn ""
     putStrLn "Insira uma expressão válida"
     putStrLn ""
     read_
 
+-- Show calculator system header and signature
 printHeader :: IO()
 printHeader = do 
   putStrLn "=========Calculadora========="
@@ -28,6 +31,7 @@ printHeader = do
   putStrLn ""
   read_
 
+-- Resolve user input and call operation module 
 read_ :: IO()
 read_ = do
   putStrLn "---------------------------"
@@ -41,11 +45,11 @@ read_ = do
 
   if validWhiteSpace(head expr, tail expr)
    then return()
-   else printErro
+   else printError
 
   if isValid(removeWhiteSpace("", expr))
     then return()
-    else printErro
+    else printError
 
   putStrLn ""
   putStrLn("A expressao digitada foi: " ++ expr)
@@ -61,15 +65,14 @@ read_ = do
   print("" ++ expr ++ " = " ++ show(calculate(getArrayWithoutSequenceOfPlusLess("", removeWhiteSpace("", expr)))) ++ "")
   read_
 
+-- Used to exit program properly 
 closeProgram :: IO()
 closeProgram = do
   putStrLn "Parando..."
   putStrLn "---------------------------"
   exitWith ExitSuccess
 
-result :: ([Char]) -> Int
-result ([])  = 0
-result (str) = basicOperation(getArrayWithoutSequenceOfPlusLess("", parentheses("", str)))
-
-calculate :: [Char] -> Int
-calculate str = result(str)
+-- Wrap math module call 
+calculate :: ([Char]) -> Int
+calculate ([])  = 0
+calculate (str) = basicOperation(getArrayWithoutSequenceOfPlusLess("", parentheses("", str)))

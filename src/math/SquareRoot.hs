@@ -3,11 +3,13 @@ module SquareRoot(squareRoot) where
 import Data.Char()
 import Parser(toList, getAfterNumber, getNumber)
 
+-- Recursive implementation to calculate square root
 calculateSquareRoot :: Int -> Int
 calculateSquareRoot n = try n where
    try i | i * i > n = try (i - 1) 
          | i * i <= n = i
 
+-- Wrap square root handling in one function
 squareRoot :: ([Char], [Char]) -> [Char]
 squareRoot (support, []) = support
 squareRoot (support, str)
