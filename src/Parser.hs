@@ -44,7 +44,7 @@ getAfterToken (str)
           h = head str
 
 getAfterNumber :: ([Char]) -> [Char]
-getAfterNumber ([]) = ""
+getAfterNumber ([]) = "_"
 getAfterNumber (str) 
     | h == '+' || h == '-' || h == '*' || h == '/' || h == 'V' || h == 'ˆ' || h == '^' = str
     | otherwise                                                                        = getAfterNumber(t)

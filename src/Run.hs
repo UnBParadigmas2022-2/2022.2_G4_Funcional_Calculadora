@@ -5,11 +5,6 @@ import Parentheses(parentheses)
 import Handler(isValid, validWhiteSpace)
 import Parser(removeWhiteSpace, getOperation, getArrayWithoutSequenceOfPlusLess, getNumber)
 
-import Exponential(exponential)
-import SquareRoot(squareRoot)
-import Multiplication(multiplication)
-import SumSubtraction(sumSubtraction)
-
 import System.Exit
 
 run :: IO()
